@@ -1,9 +1,13 @@
 main {
     background-color: #f7f6f6;
-    height:100%;
+    
 }
 
 .first-row{
     height:15%;
     
+}
+
+.last-row{
+    height:15%;
 }

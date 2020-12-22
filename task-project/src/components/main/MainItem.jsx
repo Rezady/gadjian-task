@@ -2,7 +2,10 @@ import "./main-item.css";
 
 function MainItem() {
   return (
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4 pb-3">
+    <main
+      role="main"
+      class="col-md-9 ml-sm-auto col-lg-10 px-5 pb-3 d-flex flex-column flex-grow-1"
+    >
       {/* <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Dashboard</h1>
         <div class="btn-toolbar mb-2 mb-md-0">
@@ -29,16 +32,21 @@ function MainItem() {
         <table class="table table-striped table-sm"></table>
       </div> */}
 
-      <div class="first-row row mt-5 bg-primary">
+      <div class="first-row row bg-primary">
         <div class="col">1 of 2</div>
       </div>
 
-      <div class="row">
-        <div class="col bg-success">1 of 2</div>
-        <div class="col bg-success">1 of 2</div>
-        <div class="col bg-success">1 of 2</div>
-        <div class="col bg-success">1 of 2</div>
+      <div class="row flex-grow-1 my-5">
+        <div class="col bg-success mr-3 ">1 of 2</div>
+        <div class="col bg-info mx-3">1 of 2</div>
+        <div class="col bg-secondary mx-3">1 of 2</div>
+        <div class="col bg-danger ml-3">1 of 2</div>
       </div>
+
+      <div class='last-row row bg-warning'>
+        
+      </div>
+
     </main>
   );
 }

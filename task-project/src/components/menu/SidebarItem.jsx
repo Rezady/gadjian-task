@@ -1,7 +1,9 @@
+import "./sidebar-item.css";
+
 function SidebarItem(props) {
   return (
-    <div class="container-fluid mt-0 flex-grow-1">
-      <div class="row mt-0">
+    <div class="container-fluid mt-0 d-flex flex-grow-1">
+      <div class="row mt-0 d-flex flex-grow-1">
         <nav
           id="sidebarMenu"
           class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
