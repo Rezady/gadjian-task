@@ -1,6 +1,6 @@
 function NavbarItem() {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
       <button
         class="navbar-toggler"
         type="button"
