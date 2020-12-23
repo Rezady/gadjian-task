@@ -1,0 +1,35 @@
+main {
+    background-color: #f7f6f6;
+    
+}
+
+.first-row{
+    height:15%;
+    
+}
+
+.last-row{
+    height:15%;
+}
+
+/* card */
+.header-card{
+    height:10%;
+}
+
+.text-header{
+    font-size:0.9rem;
+}
+
+.pict{
+    height:70%;
+    
+}
+
+.photo-card{
+    height:35%;
+}
+
+.identity-card{
+    height:55%;
+}
