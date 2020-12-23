@@ -1,17 +1,3 @@
-main {
-    background-color: #f7f6f6;
-    
-}
-
-.first-row{
-    height:15%;
-    
-}
-
-.last-row{
-    height:15%;
-}
-
 /* card */
 .header-card{
     height:10%;
@@ -32,4 +18,8 @@ main {
 
 .identity-card{
     height:55%;
+}
+
+p{
+    margin-bottom:2px;
 }
