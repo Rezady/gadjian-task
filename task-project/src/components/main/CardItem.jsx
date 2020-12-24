@@ -1,11 +1,26 @@
 import "./card-item.css";
-import React, { useState, useEffect, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  useContext,
+  forwardRef,
+  useImperativeHandle,
+  useRef,
+} from "react";
 import axios from "axios";
-
+import useSessionstorage from "@rooks/use-sessionstorage";
+import BodyCard from "./BodyCard";
 import { StateContext } from "../../App";
 
-function CardItem() {
+export const CardItem = forwardRef((props, ref) => {
   const stateContext = useContext(StateContext);
+  const [flag, setFlag] = useState(props.flag);
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => ({
+    focus: () => {
+      inputRef.current.flag = true;
+    },
+  }));
   const [cardClass, setCardClass] = useState([
     "col mr-3",
     "col bg-info mx-3",
@@ -14,6 +29,7 @@ function CardItem() {
   ]);
 
   useEffect(() => {
+    console.log("useeffect");
     const getApi = async () => {
       try {
         const res = await axios.get("https://randomuser.me/api/?results=28");
@@ -27,56 +43,46 @@ function CardItem() {
     getApi();
   }, []);
 
-
   function getBirthday(str) {
     const birth = new Date(str);
     return birth.getDate() + "-" + birth.getMonth();
   }
 
   return (
-    <div className="row flex-grow-1 my-5">
-      {console.log('render')}
-      {console.log('paginasi ', stateContext.state.count)}
-      {stateContext.state.arr
-        .slice(stateContext.state.count, stateContext.state.count + 4)
-        .map((data, key) => (
-          <div className={cardClass[key] + " rounded"}>
-            <div className="row bg-info header-card px-2 py-1">
-              <span className="text-header text-muted">
-                Personel ID :
-                <span className="text-success">
-                  {stateContext.state.arr[key+stateContext.state.count].id.value}
-                </span>
-                {/* <span className="float-right">
-                <span className="rounded-circle bg-dark">123</span> 
-              </span> */}
-              </span>
-            </div>
-            <div className="row bg-danger photo-card">
-              <img
-                src={stateContext.state.arr[key+stateContext.state.count].picture.large}
-                alt="..."
-                className="pict rounded-circle mx-auto my-auto"
+    <div className="row flex-grow-1 my-5" ref={inputRef}>
+      {console.log("render")}
+      {console.log("paginasi ", stateContext.state.count)}
+      {console.log("arr ", stateContext.state.arr)}
+      {console.log('length ', stateContext.state.arr.length)}
+      {props.flag === false || props.valInput === ""
+        ? stateContext.state.arr
+            .slice(stateContext.state.count, stateContext.state.count + 4)
+            .map((data, key) => (
+              <BodyCard
+                idx={key}
+                stateContext={stateContext.state}
+                cardClass={cardClass}
+                getBirthday={getBirthday(
+                  stateContext.state.arr[key + stateContext.state.count]
+                    .registered.date
+                )}
               />
-            </div>
-            <div className="row bg-light identity-card py-2 px-2">
-              <div className="d-block pl-0 text-left my-auto">
-                <p>Name</p>
-                <p>{stateContext.state.arr[key+stateContext.state.count].name.first}</p>
-                <p>Telephone</p>
-                <p>{stateContext.state.arr[key+stateContext.state.count].phone}</p>
-                <p>birthday</p>
-                <p>
-                  {getBirthday(stateContext.state.arr[key+stateContext.state.count].registered.date)}
-                </p>
-                <p>Email</p>
-                <p>{stateContext.state.arr[key+stateContext.state.count].email}</p>
-              </div>
-            </div>
-          </div>
-        ))}
+            ))
+        : stateContext.state.arr.map((data, key) => {
+            if (props.valInput === data.name.first) {
+              return (
+                <BodyCard
+                  idx={key}
+                  stateContext={stateContext.state}
+                  cardClass={cardClass}
+                  getBirthday={getBirthday(
+                    stateContext.state.arr[key + stateContext.state.count]
+                      .registered.date
+                  )}
+                />
+              );
+            }
+          })}
     </div>
   );
-}
-
-export default CardItem;
+});
