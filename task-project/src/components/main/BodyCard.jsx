@@ -38,14 +38,7 @@ function BodyCard(props) {
             {props.stateContext.arr[props.idx + props.stateContext.count].phone}
           </p>
           <p>birthday</p>
-          <p>
-            {
-              props.getBirthday
-              // (
-              //   props.stateContext.arr[props.idx + props.stateContext.count]
-              //     .registered.date)
-            }
-          </p>
+          <p>{props.getBirthday}</p>
           <p>Email</p>
           <p>
             {props.stateContext.arr[props.idx + props.stateContext.count].email}

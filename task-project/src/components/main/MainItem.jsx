@@ -18,11 +18,10 @@ function MainItem(props) {
       <FirstRow
         onChange={(val) => {
           setInputSearch(val);
-          setFlag(true);
         }}
       />
 
-      <CardItem ref={inputRef} flag={flag} valInput={inputSearch} />
+      <CardItem ref={inputRef} valInput={inputSearch} />
 
       <LastRow />
     </main>
