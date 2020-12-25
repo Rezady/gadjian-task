@@ -1,9 +1,7 @@
-import React, { useContext, useRef, useImperativeHandle } from "react";
-import { StateContext } from "../../App";
+import React from "react";
 
+// mendefinisikan fitur search
 const FirstRow = (props) => {
-  const stateContext = useContext(StateContext);
-
   return (
     <div className="first-row row bg-white ">
       <form class="form-inline my-auto ml-auto mr-3">

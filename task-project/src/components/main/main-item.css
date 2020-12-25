@@ -9,27 +9,6 @@ main {
 }
 
 .last-row{
-    height:15%;
-}
-
-/* card */
-.header-card{
     height:10%;
 }
 
-.text-header{
-    font-size:0.9rem;
-}
-
-.pict{
-    height:70%;
-    
-}
-
-.photo-card{
-    height:35%;
-}
-
-.identity-card{
-    height:55%;
-}

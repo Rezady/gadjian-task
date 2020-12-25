@@ -1,3 +1,7 @@
 .body-section row{
     height:inherit;
 }
+
+li a{
+    display:inline;
+}

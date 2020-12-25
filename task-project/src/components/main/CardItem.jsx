@@ -1,32 +1,16 @@
 import "./card-item.css";
-import React, {
-  useState,
-  useEffect,
-  useContext,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import useSessionstorage from "@rooks/use-sessionstorage";
 import BodyCard from "./BodyCard";
 import { StateContext } from "../../App";
 
-export const CardItem = forwardRef((props, ref) => {
+const CardItem = (props) => {
   const stateContext = useContext(StateContext);
-  const [flag, setFlag] = useState(props.flag);
-  const inputRef = useRef();
-  // const [valInput, setValInput] = useState(props.valInput);
-  // useImperativeHandle(ref, () => ({
-  //   focus: () => {
-  //     inputRef.current.flag = true;
-  //   },
-  // }));
   const [cardClass, setCardClass] = useState([
-    "col mr-3 mb-2",
-    "col mx-3 mb-2",
-    "col mx-3 mb-2",
-    "col ml-3 mb-2",
+    "col mr-lg-3 mr-md-3 mr-sm-3 mx-xs-auto mb-2",
+    "col mx-lg-3 mr-md-3 mr-sm-3 mx-xs-auto mb-2",
+    "col mx-lg-3 mr-md-3 mr-sm-3 mx-xs-auto mb-2",
+    "col ml-lg-3 mr-md-3 mr-sm-3 mx-xs-auto mb-2",
   ]);
 
   useEffect(() => {
@@ -50,7 +34,7 @@ export const CardItem = forwardRef((props, ref) => {
   }
 
   return (
-    <div className="row d-flex flex-grow-1 my-5" ref={inputRef}>
+    <div className="row d-flex flex-grow-1 my-5">
       {props.valInput === ""
         ? stateContext.state.arr
             .slice(stateContext.state.count, stateContext.state.count + 4)
@@ -68,8 +52,8 @@ export const CardItem = forwardRef((props, ref) => {
         : stateContext.state.arr.map((data, key) => {
             if (props.valInput === data.name.first) {
               return (
-                <div className={cardClass[key]}>
-                  <div className="row bg-info header-card px-2 py-1">
+                <div className="col-3 mx-auto mb-2">
+                  <div className="row bg-white border-bottom header-card px-2 py-1">
                     <span className="text-header text-muted">
                       Personel ID :
                       <span className="text-success">
@@ -77,23 +61,29 @@ export const CardItem = forwardRef((props, ref) => {
                       </span>
                     </span>
                   </div>
-                  <div className="row bg-danger photo-card">
+                  <div className="row bg-white photo-card">
                     <img
                       src={stateContext.state.arr[key].picture.large}
                       alt="..."
                       className="pict rounded-circle mx-auto my-auto"
                     />
                   </div>
-                  <div className="row bg-light identity-card py-2 px-2">
+                  <div className="row bg-white identity-card py-2 px-2">
                     <div className="d-block pl-0 text-left my-auto">
-                      <p>Name</p>
-                      <p>{stateContext.state.arr[key].name.first}</p>
-                      <p>Telephone</p>
-                      <p>{stateContext.state.arr[key].phone}</p>
-                      <p>birthday</p>
-                      <p>{getBirthday}</p>
-                      <p>Email</p>
-                      <p>{stateContext.state.arr[key].email}</p>
+                      <p class="mb-0">Name</p>
+                      <span class="text-muted mb-1">
+                        {stateContext.state.arr[key].name.first}
+                      </span>
+                      <p class="mb-0">Telephone</p>
+                      <span class="text-muted mb-1">
+                        {stateContext.state.arr[key].phone}
+                      </span>
+                      <p class="mb-0">birthday</p>
+                      <span class="text-muted mb-1">{getBirthday}</span>
+                      <p class="mb-0">Email</p>
+                      <span class="text-muted mb-1">
+                        {stateContext.state.arr[key].email}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -102,4 +92,6 @@ export const CardItem = forwardRef((props, ref) => {
           })}
     </div>
   );
-});
+};
+
+export default CardItem;
